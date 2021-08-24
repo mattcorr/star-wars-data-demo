@@ -2,9 +2,15 @@ function Invoke-StarWarsApi
 {
     param (
         [Parameter(Mandatory)]
-        [string] $path
+        [ValidateSet('Planets', 'Films', "People")]
+        [string] $objectType,
+
+        [int] $id = -1 
     )
     try {
+        $suffix = $id -ne -1 ? "/$id" : ""
+        $path = "$($objectType.ToLower())$suffix"
+
         $output = Invoke-RestMethod -Uri "https://swapi-deno.azurewebsites.net/api/$path" -Method GET
         Write-Output $output
     }
@@ -20,7 +26,7 @@ function Search-SWPerson {
         [string] $Name
     )
     # load all the people
-    $response = Invoke-StarWarsApi -path 'people'
+    $response = Invoke-StarWarsApi -objectType People
     # filter on the name
     $results = $response | Where-Object name -like "*$Name*" 
 
@@ -39,7 +45,7 @@ function Search-SWPlanet {
         [string] $Name
     )
     # load all the planets
-    $response = Invoke-StarWarsApi -path 'planets'
+    $response = Invoke-StarWarsApi -objectType Planets
     # filter on the name
     $results = $response | Where-Object name -like "*$Name*" 
 
@@ -58,11 +64,11 @@ function Get-SWPerson {
         [int] $Id
     )
     # get the person
-    $person = Invoke-StarWarsApi -path "people/$id"
+    $person = Invoke-StarWarsApi -objectType People -id $Id
 
     # get the homeworld planet and the films
-    $planet = Invoke-StarWarsApi -path "planets/$($person.homeworld)" 
-    $films = Invoke-StarWarsApi -path 'films'
+    $planet = Invoke-StarWarsApi -objectType Planets -id $person.homeworld
+    $films = Invoke-StarWarsApi -objectType Films
 
     # build the result object as a mix of all the data returned
     $result = [PSCustomObject]@{
