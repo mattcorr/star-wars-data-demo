@@ -12,8 +12,9 @@ The script wraps a Star Wars API site located here: https://swapi-deno.azurewebs
 | Filename | Description|
 |---|---|
 |StarWarsData.ps1|PowerShell script containing a wrapper for People, Planets and Films|
-|StarWarsData.Simple.Tests.ps1|Simple Pester Tests for the script above|
-|StarWarsData.Mocked.Tests.ps1|The same tests as Simple, but with a mocked backend for the script above|
+|StarWarsData.Simple.Tests.ps1|Simple Pester Tests|
+|StarWarsData.Mocked.Tests.ps1|The same tests as Simple, but with a mocked backend (in case the real backend is offline)|
+|StarWarsData.Complex.Tests.ps1|Contains more complex tests|
 
 ## Usage
 
