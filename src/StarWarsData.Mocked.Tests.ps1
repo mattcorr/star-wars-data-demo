@@ -52,7 +52,7 @@ BeforeAll {
     } -Verifiable -ParameterFilter { $objectType -eq 'Planets'} 
 }
 
-Describe "Search-SWPerson" {
+Describe "Search-SWPerson" -Tag "Unit", "Mocked" {
     It "Returns a single match" {
         $testName = 'Bail'
         $result = Search-SWPerson -Name $testName
@@ -74,7 +74,7 @@ Describe "Search-SWPerson" {
     }
 }
 
-Describe "Search-SWPlanet" {
+Describe "Search-SWPlanet" -Tag "Unit", "Mocked" {
     It "Returns a single match" {
         $testName = 'nabo'
         $result = Search-SWPlanet -Name $testName

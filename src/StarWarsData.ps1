@@ -61,6 +61,26 @@ function Search-SWPlanet {
     }
 }
 
+# Searches for a Star Wars planet given part of a name
+function Search-SWFilm {
+    param (
+        [Parameter(Mandatory)]
+        [string] $Name
+    )
+    # load all the planets
+    $response = Invoke-StarWarsApi -objectType Films
+    # filter on the name
+    $results = $response | Where-Object title -like "*$Name*" 
+
+    if ($results -eq $null) {
+        Write-Host "No film results found for '$Name'." -f Yellow
+    }
+    else {
+        # return all matches with some attributes
+        Write-Output $results | Select-Object @{N="id";E={$_.url}}, title, director, release_date, characters, planets
+    }
+}
+
 function Get-SWPerson {
     param (
         [Parameter(Mandatory)]
