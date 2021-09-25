@@ -1,3 +1,4 @@
+# Wrapper for the Star Wars API website
 function Invoke-StarWarsApi
 {
     param (
@@ -20,6 +21,7 @@ function Invoke-StarWarsApi
     }
 }
 
+# Searches for a Star Wars person given a part of a name
 function Search-SWPerson {
     param (
         [Parameter(Mandatory)]
@@ -39,6 +41,7 @@ function Search-SWPerson {
     }
 }
 
+# Searches for a Star Wars planet given part of a name
 function Search-SWPlanet {
     param (
         [Parameter(Mandatory)]
