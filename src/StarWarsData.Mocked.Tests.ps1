@@ -1,3 +1,4 @@
+# Arrange
 BeforeAll {
     . $PSCommandPath.Replace('.Mocked.Tests.ps1','.ps1')
 
@@ -54,44 +55,70 @@ BeforeAll {
 
 Describe "Search-SWPerson" -Tag "Unit", "Mocked" {
     It "Returns a single match" {
+        # Arrange
         $testName = 'Bail'
+        
+        # Act
         $result = Search-SWPerson -Name $testName
 
+        # Assert
         $result.Count | Should -Be 1
         $result.name | Should -BeLike "*$testName*"
     }
     It "Returns no matches" {
+        # Arrange
         $testName = 'Invalid'
+
+        # Act
         $result = Search-SWPerson -Name $testName
 
+        # Assert
         $result | Should -BeNullOrEmpty
     }
     It "Returns multiple matches" {
+        # Arrange
         $testName = 'walker'
+
+        # Act
         $result = Search-SWPerson -Name $testName
 
+        # Assert
         $result.Count | Should -BeGreaterThan 1
+        ($result.Name -like "*$testName*").Count | Should -Be $result.Count
     }
 }
 
 Describe "Search-SWPlanet" -Tag "Unit", "Mocked" {
     It "Returns a single match" {
+        # Arrange
         $testName = 'nabo'
+        
+        # Act
         $result = Search-SWPlanet -Name $testName
 
+        # Assert
         $result.Count | Should -Be 1
         $result.name | Should -BeLike "*$testName*"
     }
     It "Returns no matches" {
+        # Arrange
         $testName = 'Invalid'
+        
+        # Act
         $result = Search-SWPlanet -Name $testName
 
+        # Assert
         $result | Should -BeNullOrEmpty
     }
     It "Returns multiple matches" {
+        # Arange
         $testName = 'too'
+
+        # Act
         $result = Search-SWPlanet -Name $testName
 
+        # Assert
         $result.Count | Should -BeGreaterThan 1
+        ($result.Name -like "*$testName*").Count | Should -Be $result.Count
     }
 }
