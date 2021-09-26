@@ -3,8 +3,8 @@ BeforeAll {
     . $PSCommandPath.Replace('.Simple.Tests.ps1','.ps1')
 }
 
-Describe "Search-SWPerson" -Tag "Unit" {
-    It "Returns a single match" {
+Describe 'Search-SWPerson' -Tag 'Unit' {
+    It 'Returns a single match' {
         # Arrange
         $testName = 'Bail'
 
@@ -15,7 +15,7 @@ Describe "Search-SWPerson" -Tag "Unit" {
         $result.Count | Should -Be 1
         $result.name | Should -BeLike "*$testName*"
     }
-    It "Returns no matches" {
+    It 'Returns no matches' {
         # Arrange
         $testName = 'Invalid'
 
@@ -25,7 +25,7 @@ Describe "Search-SWPerson" -Tag "Unit" {
         # Assert
         $result | Should -BeNullOrEmpty
     }
-    It "Returns multiple matches" {
+    It 'Returns multiple matches' {
         # Arrange
         $testName = 'walker'
 
@@ -38,8 +38,8 @@ Describe "Search-SWPerson" -Tag "Unit" {
     }
 }
 
-Describe "Search-SWPlanet" -Tag "Unit" {
-    It "Returns a single match" {
+Describe 'Search-SWPlanet' -Tag 'Unit' {
+    It 'Returns a single match' {
         # Arrange
         $testName = 'nabo'
 
@@ -50,7 +50,7 @@ Describe "Search-SWPlanet" -Tag "Unit" {
         $result.Count | Should -Be 1
         $result.name | Should -BeLike "*$testName*"
     }
-    It "Returns no matches" {
+    It 'Returns no matches' {
         # Arrange
         $testName = 'Invalid'
 
@@ -60,7 +60,7 @@ Describe "Search-SWPlanet" -Tag "Unit" {
         # Assert
         $result | Should -BeNullOrEmpty
     }
-    It "Returns multiple matches" {
+    It 'Returns multiple matches' {
         # Arrange
         $testName = 'too'
 

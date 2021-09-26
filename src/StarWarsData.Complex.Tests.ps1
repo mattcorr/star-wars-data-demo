@@ -3,12 +3,12 @@ BeforeAll {
     . $PSCommandPath.Replace('.Complex.Tests.ps1','.ps1')
 }
 
-Describe "Search-SWFilm" -Tag "Unit" {
-    It "Returns film with release date '<year>' & director '<director>' given title fragment: <name>"  -TestCases @(
+Describe 'Search-SWFilm' -Tag 'Unit' {
+    It "Returns film with release date '<year>' & director '<director>' given title fragment '<name>'"  -TestCases @(
         # Arrange
-        @{name = "Phantom"; year = '1999-05-19'; director = "George Lucas" }
-        @{name = "Empire"; year = '1980-05-17'; director = "Irvin Kershner" }
-        @{name = "Return"; year = '1983-05-25'; director = "Richard Marquand" }
+        @{name = 'Phantom'; year = '1999-05-19'; director = 'George Lucas' }
+        @{name = 'Empire'; year = '1980-05-17'; director = 'Irvin Kershner' }
+        @{name = 'Return'; year = '1983-05-25'; director = 'Richard Marquand' }
     )  {
         # Act
         $result = Search-SWFilm -name $name
@@ -21,12 +21,12 @@ Describe "Search-SWFilm" -Tag "Unit" {
     }
 }
 
-Describe "Get-SWPerson" -Tag "Unit" {
-    It "Returns person metadata for '<fullname>' with gender <gender>, eye colour: <eyeColour> and Film count: <filmCount>"  -TestCases @(
+Describe 'Get-SWPerson' -Tag 'Unit' {
+    It "Returns person metadata for '<fullname>' with gender '<gender>', eye colour '<eyeColour>' & film count of <filmCount>"  -TestCases @(
         # Arrange
-        @{name = "maul"; fullName = "Darth Maul"; gender = 'male'; eyeColour = 'yellow'; homeWorld = 'Dathomir'; filmCount = 1 }
-        @{name = "luke"; fullName = "Luke Skywalker"; gender = 'male'; eyeColour = 'blue'; homeWorld = 'Tatooine'; filmCount = 4 }
-        @{name = "mothma"; fullName = "Mon Mothma"; gender = 'female'; eyeColour = 'blue'; homeWorld = 'Chandrila'; filmCount = 1 }
+        @{name = 'maul'; fullName = 'Darth Maul'; gender = 'male'; eyeColour = 'yellow'; homeWorld = 'Dathomir'; filmCount = 1 }
+        @{name = 'luke'; fullName = 'Luke Skywalker'; gender = 'male'; eyeColour = 'blue'; homeWorld = 'Tatooine'; filmCount = 4 }
+        @{name = 'mothma'; fullName = 'Mon Mothma'; gender = 'female'; eyeColour = 'blue'; homeWorld = 'Chandrila'; filmCount = 1 }
     )  {
         # Act
         $result = Search-SWPerson -name $name

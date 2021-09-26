@@ -53,8 +53,8 @@ BeforeAll {
     } -Verifiable -ParameterFilter { $objectType -eq 'Planets'} 
 }
 
-Describe "Search-SWPerson" -Tag "Unit", "Mocked" {
-    It "Returns a single match" {
+Describe 'Search-SWPerson' -Tag 'Unit', 'Mocked' {
+    It 'Returns a single match' {
         # Arrange
         $testName = 'Bail'
         
@@ -65,7 +65,7 @@ Describe "Search-SWPerson" -Tag "Unit", "Mocked" {
         $result.Count | Should -Be 1
         $result.name | Should -BeLike "*$testName*"
     }
-    It "Returns no matches" {
+    It 'Returns no matches' {
         # Arrange
         $testName = 'Invalid'
 
@@ -88,8 +88,8 @@ Describe "Search-SWPerson" -Tag "Unit", "Mocked" {
     }
 }
 
-Describe "Search-SWPlanet" -Tag "Unit", "Mocked" {
-    It "Returns a single match" {
+Describe 'Search-SWPlanet' -Tag 'Unit', 'Mocked' {
+    It 'Returns a single match' {
         # Arrange
         $testName = 'nabo'
         
@@ -100,7 +100,7 @@ Describe "Search-SWPlanet" -Tag "Unit", "Mocked" {
         $result.Count | Should -Be 1
         $result.name | Should -BeLike "*$testName*"
     }
-    It "Returns no matches" {
+    It 'Returns no matches' {
         # Arrange
         $testName = 'Invalid'
         
@@ -110,7 +110,7 @@ Describe "Search-SWPlanet" -Tag "Unit", "Mocked" {
         # Assert
         $result | Should -BeNullOrEmpty
     }
-    It "Returns multiple matches" {
+    It 'Returns multiple matches' {
         # Arange
         $testName = 'too'
 
