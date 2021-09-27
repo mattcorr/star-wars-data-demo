@@ -1,4 +1,8 @@
-# Wrapper for the Star Wars API website
+# Wrapper for the Star Wars API website https://swapi-deno.azurewebsites.net
+#
+# other samples that are out there, in case the above site goes offline
+# - www.swapi.tech
+# - swapi.dev
 function Invoke-StarWarsApi
 {
     param (
@@ -61,13 +65,13 @@ function Search-SWPlanet {
     }
 }
 
-# Searches for a Star Wars planet given part of a name
+# Searches for a Star Wars film given part of a name
 function Search-SWFilm {
     param (
         [Parameter(Mandatory)]
         [string] $Name
     )
-    # load all the planets
+    # load all the films (currently does not include the new trilogy)
     $response = Invoke-StarWarsApi -objectType Films
     # filter on the name
     $results = $response | Where-Object title -like "*$Name*" 
@@ -103,8 +107,3 @@ function Get-SWPerson {
     Write-Output $result
 }
 
-
-
-# other samples
-# - www.swapi.tech
-# - swapi.dev
