@@ -84,7 +84,7 @@ Describe 'Search-SWPerson' -Tag 'Unit', 'Mocked' {
 
         # Assert
         $result.Count | Should -BeGreaterThan 1
-        ($result.Name -like "*$testName*").Count | Should -Be $result.Count
+        $result.Name -like "*$testName*"| Should -HaveCount $result.Count
     }
 }
 
@@ -119,6 +119,6 @@ Describe 'Search-SWPlanet' -Tag 'Unit', 'Mocked' {
 
         # Assert
         $result.Count | Should -BeGreaterThan 1
-        ($result.Name -like "*$testName*").Count | Should -Be $result.Count
+        $result.Name -like "*$testName*" | Should -HaveCount $result.Count
     }
 }
