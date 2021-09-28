@@ -3,6 +3,8 @@
 # other samples that are out there, in case the above site goes offline
 # - www.swapi.tech
 # - swapi.dev
+
+$swApiUrl = 'https://swapi-deno.azurewebsites.net'
 function Invoke-StarWarsApi
 {
     param (
@@ -16,11 +18,12 @@ function Invoke-StarWarsApi
         $suffix = $id -ne -1 ? "/$id" : ""
         $path = "$($objectType.ToLower())$suffix"
 
-        $output = Invoke-RestMethod -Uri "https://swapi-deno.azurewebsites.net/api/$path" -Method GET
+        $output = Invoke-RestMethod -Uri "$swApiUrl/api/$path" -Method GET
         Write-Output $output
     }
     catch {
-        Write-Host "Error calling https://swapi-deno.azurewebsites.net/api/$path. $($_.Exception.Message)" -f Red
+        $msg = "Error calling $swApiUrl/api/$path. $($_.Exception.Message)"
+        Write-Host $msg -f Red
         Write-Output $null
     }
 }
@@ -41,7 +44,9 @@ function Search-SWPerson {
     }
     else {
         # return all matches with some properties
-        Write-Output $results | Select-Object @{N="id";E={$_.url}}, name, gender, height, @{N="weight";E={$_.mass}}
+        Write-Output $results | Select-Object @{N="id";E={$_.url}}, 
+                                              name, gender, height, 
+                                              @{N="weight";E={$_.mass}}
     }
 }
 
@@ -61,7 +66,9 @@ function Search-SWPlanet {
     }
     else {
         # return all matches with some attributes
-        Write-Output $results | Select-Object @{N="id";E={$_.url}}, name, population, diameter, terrain
+        Write-Output $results | Select-Object @{N="id";E={$_.url}}, 
+                                              name, population, 
+                                              diameter, terrain
     }
 }
 
@@ -81,7 +88,9 @@ function Search-SWFilm {
     }
     else {
         # return all matches with some attributes
-        Write-Output $results | Select-Object @{N="id";E={$_.url}}, title, director, release_date, characters, planets
+        Write-Output $results | Select-Object @{N="id";E={$_.url}}, title, 
+                                              director, release_date, 
+                                              characters, planets
     }
 }
 
@@ -100,9 +109,11 @@ function Get-SWPerson {
     # build the result object as a mix of all the data returned
     $result = [PSCustomObject]@{
         Name = $person.Name
-        BodyType = $person | Select-Object height, mass, gender, skin_color, eye_color
+        BodyType = $person | Select-Object height, mass, gender, 
+                                           skin_color, eye_color
         HomeWorld = $planet | Select-Object name, population, gravity, terrain
-        Films = $films | Where-Object url -in $person.films | Select-Object title, director, release_date
+        Films = $films | Where-Object url -in $person.films | 
+                         Select-Object title, director, release_date
     }
     Write-Output $result
 }
