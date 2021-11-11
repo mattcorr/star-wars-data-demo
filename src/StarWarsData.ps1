@@ -44,9 +44,9 @@ function Search-SWPerson {
     }
     else {
         # return all matches with some properties
-        Write-Output $results | Select-Object @{N="id";E={$_.url}}, 
+        Write-Output $results | Select-Object @{Name="id";Expression={$_.url}}, 
                                               name, gender, height, 
-                                              @{N="weight";E={$_.mass}}
+                                              @{Name="weight";Expression={$_.mass}}
     }
 }
 
@@ -66,7 +66,7 @@ function Search-SWPlanet {
     }
     else {
         # return all matches with some attributes
-        Write-Output $results | Select-Object @{N="id";E={$_.url}}, 
+        Write-Output $results | Select-Object @{Name="id";Expression={$_.url}}, 
                                               name, population, 
                                               diameter, terrain
     }
@@ -88,8 +88,8 @@ function Search-SWFilm {
     }
     else {
         # return all matches with some attributes
-        Write-Output $results | Select-Object @{N="id";E={$_.url}}, title, 
-                                              director, release_date, 
+        Write-Output $results | Select-Object @{Name="id";Expression={$_.url}}, 
+                                              title, director, release_date, 
                                               characters, planets
     }
 }
