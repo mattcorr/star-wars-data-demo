@@ -31,6 +31,6 @@ The repo is uses as the sample for **The AAA Approach** chapter in the **Modern 
 ```powershell
 > Invoke-Pester -Path ./StarWarsData.*.Tests.ps1 -Output Detailed
 ```
-- Users can tweak the Invoke-Pester command parameters _(i.e. filter on tags or just run one Test file)_ or use the UI in Visial Studio Code to run the tests
+- Users can tweak the `Invoke-Pester` command parameters _(i.e. filter on tags or just run one Test file)_ or use the UI in Visual Studio Code to run the tests
 
 **NOTE:** If this is the first time the back end API is triggered in a while, it may take a while for the initial request to respond as the website is warmed up.
