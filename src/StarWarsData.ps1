@@ -4,6 +4,8 @@
 # - www.swapi.tech
 # - swapi.dev
 
+#Requires -Version 7.2
+
 $swApiUrl = 'https://swapi-deno.azurewebsites.net'
 function Invoke-StarWarsApi
 {
@@ -39,7 +41,7 @@ function Search-SWPerson {
     # filter on the name
     $results = $response | Where-Object name -like "*$Name*" 
 
-    if ($results -eq $null) {
+    if ($null -eq $results) {
         Write-Host "No person results found for '$Name'." -f Yellow
     }
     else {
@@ -61,7 +63,7 @@ function Search-SWPlanet {
     # filter on the name
     $results = $response | Where-Object name -like "*$Name*" 
 
-    if ($results -eq $null) {
+    if ($null -eq $results) {
         Write-Host "No planet results found for '$Name'." -f Yellow
     }
     else {
@@ -83,7 +85,7 @@ function Search-SWFilm {
     # filter on the name
     $results = $response | Where-Object title -like "*$Name*" 
 
-    if ($results -eq $null) {
+    if ($null -eq $results) {
         Write-Host "No film results found for '$Name'." -f Yellow
     }
     else {
